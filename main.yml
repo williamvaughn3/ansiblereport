@@ -1,6 +1,8 @@
 ---
 - name: Gather and Print Ansible Facts
   hosts: all
+  description: 
+    - ALL Facts stored on host
   gather_facts: yes
   vars_files:
     - vars/facts_vars.yml
