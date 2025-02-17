@@ -6,7 +6,7 @@
   gather_facts: yes
   vars_files:
     - vars/facts_vars.yml
-    - - vars/filters.yml
+    - vars/filters.yml
 
   tasks:
     - name: Generate Markdown Facts Report
@@ -17,6 +17,18 @@
     - name: Display generated report path
       debug:
         msg: "Markdown report generated: /tmp/ansible_facts_report_{{ inventory_hostname }}.md"
+
+
+    - name: Print report to stdout
+      run_once: true
+      delegate_to: localhost
+      command: "cat /tmp/ansible_filtered_report.md"
+      register: markdown_output
+
+    - name: Display report in stdout
+      debug:
+        msg: "{{ markdown_output.stdout }}"
+      run_once: true
 
 
 
