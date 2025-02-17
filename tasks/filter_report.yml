@@ -1,0 +1,50 @@
+---
+
+- name: Gather and Filter Ansible Facts
+  hosts: all
+  gather_facts: yes
+  vars_files:
+    - vars/disable_facts.yml
+    - vars/filters.yml
+
+  tasks:
+    - name: Match hosts based on fact value
+      debug:
+        msg: "Host {{ inventory_hostname }} matches '{{ fact_filter.fact_name }}' = {{ fact_filter.fact_value }}"
+      when:
+        - fact_filter.fact_name in ansible_facts
+        - ansible_facts.get(fact_filter.fact_name, []) is iterable
+        - fact_filter.fact_value in ansible_facts[fact_filter.fact_name]
+
+
+    # - name: Match hosts based on partial hostname
+    #   debug:
+    #     msg: "Host {{ inventory_hostname }} matches hostname filter: '{{ hostname_filter }}'"
+    #   when: 
+    #     - hostname_filter in ansible_facts['hostname']
+
+    # - name: Match hosts based on first three octets of IP
+    #   debug:
+    #     msg: "Host {{ inventory_hostname }} matches IP filter: '{{ ip_filter }}'"
+    #   when: 
+    #     - ansible_facts['default_ipv4']['address'] is defined
+    #     - ansible_facts['default_ipv4']['address'] | regex_search('^' + ip_filter)
+
+
+    - name: Generate Markdown report for matching hosts
+      template:
+        src: templates/filtered_facts_report.md.j2
+        dest: "/tmp/ansible_filtered_report.md"
+      run_once: true
+      delegate_to: localhost
+
+    - name: Print report to stdout
+      run_once: true
+      delegate_to: localhost
+      command: "cat /tmp/ansible_filtered_report.md"
+      register: markdown_output
+
+    - name: Display report in stdout
+      debug:
+        msg: "{{ markdown_output.stdout }}"
+      run_once: true

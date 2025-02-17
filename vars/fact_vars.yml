@@ -1,0 +1,21 @@
+---
+facts_vars:
+  ansible_all_ipv4_addresses: false
+  ansible_architecture: false
+  ansible_bios_version: false
+  ansible_default_ipv4: false
+  ansible_distribution: false
+  ansible_distribution_version: false
+  ansible_dns: false
+  ansible_domain: false
+  ansible_fqdn: true   # Ensuring FQDN is always displayed
+  ansible_hostname: false
+  ansible_kernel: false
+  ansible_memtotal_mb: false
+  ansible_processor: false
+  ansible_processor_cores: false
+  ansible_processor_count: false
+  ansible_product_name: false
+  ansible_system_vendor: false
+  ansible_uptime_seconds: false
+  ansible_userspace_bits: false

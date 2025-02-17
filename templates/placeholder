@@ -1,0 +1,15 @@
+# Ansible Report
+
+{% for host, facts in hostvars.items() if 'ansible_facts' in facts %}
+## Host: `{{ facts['ansible_facts'].get('fqdn', facts['ansible_facts']['hostname']) }}`
+---
+
+| **Fact** | **Value** |
+|----------|----------|
+{% for fact in facts['ansible_facts'] %}
+{% if fact in facts_vars and facts_vars[fact] %}
+| `{{ fact | replace('ansible_', '') }}` | `{{ facts['ansible_facts'][fact] }}` |
+{% endif %}
+{% endfor %}
+
+{% endfor %}

@@ -1,0 +1,53 @@
+---
+
+fact_filter:
+  fact_name: "ansible_dns.nameservers" 
+  fact_value: "1.1.1.1"
+
+# Examples 
+# fact_filter:
+#   fact_name: "ansible_distribution"  
+#   fact_value: "Ubuntu"
+  
+# fact_filter:
+#   fact_name: "ansible_kernel"  
+#   fact_value: "5.15.0-60-generic"
+
+# fact_filter:
+#   fact_name: "ansible_memtotal_mb" 
+#   fact_value: 8192  
+
+
+
+# hostname_filter: "db"   # Find hosts with 'db' in the name (e.g., "db-server-01")
+# hostname_filter: "prod" # Find production hosts with 'prod' in the hostname
+# hostname_filter: ""  # Leave empty to disable hostname filtering
+
+# ip_filter: "10.0.0."   # Match hosts on 10.0.0.x network
+# ip_filter: "172.16.0." # Match hosts on 172.16.0.x subnet
+# ip_filter: ""  # Leave empty to disable IP filtering
+
+
+# ansible_all_ipv4_addresses
+# ansible_architecture
+# ansible_bios_version
+# ansible_default_ipv4
+# ansible_distribution
+# ansible_distribution_version
+# ansible_dns
+# ansible_domain
+# ansible_fqdn
+# ansible_hostname
+# ansible_kernel
+# ansible_memtotal_mb
+# ansible_processor
+# ansible_processor_cores
+# ansible_processor_count
+# ansible_product_name
+# ansible_system_vendor
+# ansible_uptime_seconds
+# ansible_userspace_bits
+
+
+
+

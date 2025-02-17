@@ -1,0 +1,21 @@
+---
+- name: Gather and Print Ansible Facts
+  hosts: all
+  gather_facts: yes
+  vars_files:
+    - vars/facts_vars.yml
+    - - vars/filters.yml
+
+  tasks:
+    - name: Generate Markdown Facts Report
+      template:
+        src: templates/facts_report.md.j2
+        dest: "/tmp/ansible_facts_report_{{ inventory_hostname }}.md"
+
+    - name: Display generated report path
+      debug:
+        msg: "Markdown report generated: /tmp/ansible_facts_report_{{ inventory_hostname }}.md"
+
+
+
+
